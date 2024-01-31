@@ -17,6 +17,8 @@ urlpatterns = [
     path('blogs/<slug:slug>/', views.blog_detail, name='blog_detail'),
     path('reviews/', views.review_list, name='reviews'),
     path('contact/', views.contact, name='contact'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('sitemap.xml', views.sitemap_xml, name='sitemap_xml'),
 
 
 ]
