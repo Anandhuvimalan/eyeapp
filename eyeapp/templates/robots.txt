@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /admin/  # Adjust as needed
+allow: /private/  # Adjust as needed
+
+Sitemap: https://www.drrameshkumarkurupandsaradaeyehospital.org/sitemap.xml
+
+allow: /services
+allow: /about
+allow: /doctor
+allow: /blogs/
+allow: /contact/
+allow: /reviews/
+allow: /doctor/dr-meena-chakrabarti/
+allow: /doctor/dr-arup-chakrabarti/
+allow: /services/cataract-surgery/

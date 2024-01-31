@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Icon, Service, Doctor, DoctorDetails, ServiceDetails, CategoryDetails, Gallery, Mizhi, Equipment, Blog, Review
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
+from django.template import loader
 
 
 def home_view(request):
@@ -147,3 +148,13 @@ def review_list(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+
+def robots_txt(request):
+    content = loader.render_to_string('robots.txt')
+    return HttpResponse(content, content_type='text/plain')
+
+
+def sitemap_xml(request):
+    content = loader.render_to_string('sitemap.xml')
+    return HttpResponse(content, content_type='application/xml')
