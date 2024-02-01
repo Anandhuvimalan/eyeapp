@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Icon, Service, Doctor, DoctorDetails, ServiceDetails, CategoryDetails, Gallery, Mizhi, Equipment, Blog, Review
+from .models import Category, Icon, Service, Doctor, DoctorDetails, ServiceDetails, CategoryDetails, Gallery, Mizhi, Equipment, Blog, Review, ManagementTeam, ManagementTeamDetails
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
@@ -158,3 +158,22 @@ def robots_txt(request):
 def sitemap_xml(request):
     content = loader.render_to_string('sitemap.xml')
     return HttpResponse(content, content_type='application/xml')
+
+
+def management_team(request):
+    team_members = ManagementTeam.objects.all()
+    return render(request, 'management_team.html', {'team_members': team_members, })
+
+
+def management_team_detail(request, slug):
+    team_member = ManagementTeam.objects.get(slug=slug)
+    details = ManagementTeamDetails.objects.get(team_member=team_member)
+    other_team_members = ManagementTeam.objects.exclude(slug=slug)
+
+    context = {
+        'details': details,
+        'team_member': team_member,
+        'other_team_members': other_team_members,
+    }
+
+    return render(request, 'management_team_detail.html', context)

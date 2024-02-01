@@ -19,6 +19,9 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('sitemap.xml', views.sitemap_xml, name='sitemap_xml'),
+    path('management-team', views.management_team, name='management_team'),
+    path('management-team/<slug:slug>/',
+         views.management_team_detail, name='management_team_detail'),
 
 
 ]

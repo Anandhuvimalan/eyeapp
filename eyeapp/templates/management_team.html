@@ -7,7 +7,7 @@
         <div class="container">
             <h1 data-w-id="61105768-a1d9-5172-8984-ba6f87ff4b87"
                 style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                class="header-6-title-3">Our Doctors</h1>
+                class="header-6-title-3">Managment Team</h1>
         </div>
         <div class="header-absolute-block">
             <div class="sticky-100vh-block">
@@ -31,15 +31,15 @@
             <div class="padding">
                 <div class="vertical-flex-gap-8em">
                     <div class="vertical-flex-gap-2em">
-                        <h2 class="heading is-small-title">Doctors</h2>
+                        <h2 class="heading is-small-title">Managment Team</h2>
                         <div class="the-team-2 w-dyn-list">
                             <div role="list" class="team-2-list w-dyn-items">
-                                {% for doctor in doctors %}
+                                {% for team_member in team_members %}
                                 <div role="listitem" class="team-2-item w-dyn-item">
-                                    <a href="{% url 'doctor_detail' doctor.slug %}"
+                                    <a href="{% url 'management_team_detail' team_member.slug %}"
                                         class="team-2-content w-inline-block">
-                                        <p class="team-2-name">{{ doctor.name }}</p>
-                                        <p class="team-2-role">{{ doctor.role }}</p>
+                                        <p class="team-2-name">{{ team_member.name }}</p>
+                                        <p class="team-2-role">{{ team_member.role }}</p>
                                     </a>
                                     <div class="team-2-image">
                                         <div class="_3d-block">
@@ -48,9 +48,9 @@
                                                 <div class="animation-color-bg is-linen"
                                                     style="display: block; transform: translate3d(0px, 101%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                                 </div>
-                                                <img alt="{{ doctor.name }}" src="{{ doctor.image.url }}"
+                                                <img alt="{{ team_member.name }}" src="{{ team_member.image.url }}"
                                                     sizes="(max-width: 479px) 92vw, (max-width: 767px) 47vw, (max-width: 991px) 48vw, 34vw"
-                                                    srcset="{{ doctor.image_500.url }} 500w, {{ doctor.image_800.url }} 800w, {{ doctor.image.url }} 1018w"
+                                                    srcset="{{ team_member.image_500.url }} 500w, {{ team_member.image_800.url }} 800w, {{ team_member.image.url }} 1018w"
                                                     class="cover-image is-team"
                                                     style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                             </div>

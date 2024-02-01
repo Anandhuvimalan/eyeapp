@@ -402,3 +402,69 @@ class Review(models.Model):
 
     def __str__(self):
         return self.patient_name
+
+
+class ManagementTeam(models.Model):
+    name = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, blank=True)
+    image = models.ImageField(upload_to='management_team_images/')
+    image_500 = models.ImageField(
+        upload_to='management_team_images_500/', blank=True)
+    image_800 = models.ImageField(
+        upload_to='management_team_images_800/', blank=True)
+    image_1018 = models.ImageField(
+        upload_to='management_team_images_1018/', blank=True)
+
+    def save(self, *args, **kwargs):
+        # Save the original image first
+        if not self.id:  # Only process if it's a new object
+            super(ManagementTeam, self).save(*args, **kwargs)
+
+        # Create different image resolutions
+        resolutions = {
+            '500': self.image_500,
+            '800': self.image_800,
+            '1018': self.image_1018
+        }
+
+        try:
+            with Image.open(self.image) as img:
+                for res, image_field in resolutions.items():
+                    output_size = self._calculate_new_dimensions(img, int(res))
+                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
+                    temp_thumb = BytesIO()
+                    img.save(temp_thumb, img.format, quality=100)
+                    temp_thumb.seek(0)
+                    image_field.save(
+                        f'{self.name}_{res}.{img.format.lower()}',
+                        ContentFile(temp_thumb.read()),
+                        save=False
+                    )
+                    temp_thumb.close()
+        except IOError:
+            raise ValidationError("Error processing image")
+
+        # Save the object again with all the images
+        super(ManagementTeam, self).save(*args, **kwargs)
+
+    def _calculate_new_dimensions(self, image, base_width):
+        w_percent = (base_width / float(image.size[0]))
+        h_size = int((float(image.size[1]) * float(w_percent)))
+        return (base_width, h_size)
+
+    def __str__(self):
+        return self.name
+
+
+class ManagementTeamDetails(models.Model):
+    team_member = models.OneToOneField(
+        ManagementTeam, related_name='details', on_delete=models.CASCADE)
+    main_description = models.TextField(blank=True)
+    about_description = models.TextField(blank=True)
+    experience = models.TextField(blank=True)
+    expertise = models.TextField(blank=True)
+    responsibilities = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.team_member.name}'s Details"
