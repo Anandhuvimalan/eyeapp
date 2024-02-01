@@ -28,7 +28,14 @@
                     class="fullscreen-main-link w-inline-block">
                     <div class="fullscreen-link-sign is-2nd"><img src="{% static 'icons/menuteam.svg' %}" loading="lazy"
                             alt="" class="fullscreen-link-icon"></div>
-                    <p class="fullscreen-link-text">The Team</p>
+                    <p class="fullscreen-link-text">Doctors</p>
+
+                </a>
+                <a href="{% url 'management_team' %}" id="w-node-_8f893bb8-edec-5ffe-1af6-e4c68647d314-8647d2f8"
+                    class="fullscreen-main-link w-inline-block">
+                    <div class="fullscreen-link-sign is-2nd"><img src="{% static 'icons/menuteam.svg' %}" loading="lazy"
+                            alt="" class="fullscreen-link-icon"></div>
+                    <p class="fullscreen-link-text">Managment Team</p>
 
                 </a><a href="{% url 'blog' %}" id="w-node-_8f893bb8-edec-5ffe-1af6-e4c68647d31c-8647d2f8"
                     class="fullscreen-main-link w-inline-block">
@@ -231,7 +238,8 @@
                         <nav class="dropdown-list w-dropdown-list">
                             <div class="menu-large-links">
                                 <a href="{% url 'about' %}" class="menu-large-link">About</a>
-                                <a href="{% url 'doctors' %}" class="menu-large-link">The team</a>
+                                <a href="{% url 'doctors' %}" class="menu-large-link">Doctors</a>
+                                <a href="{% url 'management_team' %}" class="menu-large-link">Managment Team</a>
                                 <a href="{% url 'gallery' %}" class="menu-large-link">Gallery</a>
                                 <a href="{% url 'reviews' %}" class="menu-large-link">Reviews</a>
                                 <a href="{% url 'blog' %}" class="menu-large-link">Blogs</a>

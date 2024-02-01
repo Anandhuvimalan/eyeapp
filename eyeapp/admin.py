@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Icon, Service, Doctor, DoctorDetails, ServiceDetails, CategoryDetails, Gallery, Mizhi, Equipment, Blog, BlogCategory, Review
+from .models import Category, Icon, Service, Doctor, DoctorDetails, ServiceDetails, CategoryDetails, Gallery, Mizhi, Equipment, Blog, BlogCategory, Review, ManagementTeam, ManagementTeamDetails
 
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -33,6 +33,11 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('patient_name', 'what_doctor', 'doctor_name',)
 
 
+class ManagementTeamAdmin(admin.ModelAdmin):
+    list_display = ['name', 'role']
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(CategoryDetails)
 admin.site.register(Icon, IconAdmin)
@@ -46,3 +51,5 @@ admin.site.register(Equipment)
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(BlogCategory)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(ManagementTeam, ManagementTeamAdmin)
+admin.site.register(ManagementTeamDetails)
