@@ -26,4 +26,4 @@ Allow: /management-team/draadit-anilkumar/
 Allow: /management-team/draaditi-anilkumar/
 Allow: /gallery/
 Allow: /doctor/dr-suchithra-rameshkurup/
-# Add other Allow directives as needed
+
