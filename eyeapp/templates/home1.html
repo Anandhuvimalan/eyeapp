@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
+{% block common_description %}Custom description for this page{% endblock %}
+{% block common_keywords %}Custom keywords for this page{% endblock %}
+{% block common_author %}Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital{% endblock %}
+
+{% block page_title %}Custom Page Title{% endblock %}
+{% block og_title %}Custom Page Title for Open Graph{% endblock %}
+content="Dr. Ramesh kumar Kurup & Sarada Memorial Eye Hospital, providing top-notch eye care services including cataract
+surgery, eye tests, and more.">
+{% block og_description %}{% endblock %}
+{% block og_image %}{% static 'images/custom_image.jpg' %}{% endblock %}
+{% block og_url %}https://www.yourcustomurl.com{% endblock %}
+
+{% block twitter_card %}summary_large_image{% endblock %}
+{% block twitter_title %}Custom Twitter Title{% endblock %}
+{% block twitter_description %}Custom Twitter Description{% endblock %}
+{% block twitter_image %}{% static 'images/custom_twitter_image.jpg' %}{% endblock %}
 
 {% block content %}
 <main class="main">
@@ -9,16 +25,16 @@
                 <div class="container">
                     <div class="header-11-content">
                         <h1 data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc22" class="heading is-header-title">
-                            Expert Eye Care</h1>
+                            Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital</h1>
                         <div class="header-line-block">
                             <div data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc25" class="header-line"></div>
-                            <p data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc26" class="header-subtitle">At
+                            <p data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc26" class="header-subtitle">Eye Care
                             </p>
                             <div data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc28" class="header-line"></div>
                         </div>
                         <div class="header-content-block">
-                            <p data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc2a" class="header-content-text">
-                                Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital</p>
+                            <!-- <p data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc2a" class="header-content-text">
+                                Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital</p> -->
                             <a data-w-id="63587a3f-8af7-2df4-ee76-9b5b1714fc2c" href="#treatments"
                                 class="main-button is-transparent w-inline-block">
                                 <div class="button-text">Explore</div>
@@ -320,6 +336,7 @@
                             <div role="listitem" class="team-2-item w-dyn-item">
                                 <a href="{% url 'doctor_detail' doctor.slug %}" class="team-2-content w-inline-block">
                                     <p class="team-2-name">{{ doctor.name }}</p>
+                                    <p class="team-2-name">{{ doctor.designation }}</p>
                                     <p class="team-2-role">{{ doctor.role }}</p>
                                 </a>
                                 <div class="team-2-image">
@@ -421,7 +438,7 @@
                             <div data-w-tab="Tab 1" class="tab-pane w-tab-pane w--tab-active"
                                 id="w-tabs-0-data-w-pane-0" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-0">
                                 <div class="tab-inner">
-                                    <div class="w-layout-grid gallery-grid-4">
+                                    <div class="w-layout-grid gallery-grid-3">
                                         {% for gallery_item in gallery %}
                                         <a href="#" class="gallery-lightbox is-4th w-inline-block w-lightbox"
                                             style="opacity: 0;" aria-label="open lightbox" aria-haspopup="dialog">
@@ -461,7 +478,7 @@
                             <div data-w-tab="Tab 3" class="tab-pane w-tab-pane" id="w-tabs-0-data-w-pane-2"
                                 role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-2">
                                 <div class="tab-inner">
-                                    <div class="w-layout-grid gallery-grid-4">
+                                    <div class="w-layout-grid gallery-grid-3">
                                         {% for equipment_item in equipment %}
                                         <a href="#" class="gallery-lightbox is-4th w-inline-block w-lightbox"
                                             style="opacity: 0;" aria-label="open lightbox" aria-haspopup="dialog">

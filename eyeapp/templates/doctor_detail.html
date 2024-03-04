@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% block common_description %}{{details.main_description }}{% endblock %}
+{% block common_keywords %}{{details.experience }}{% endblock %}
+
+{% block page_title %}{{doctor.name }}{% endblock %}
+{% block og_title %}{{doctor.name }}{% endblock %}
+{% block og_description %}{{details.main_description }}{% endblock %}
+{% block og_image %}{{ doctor.image.url }}{% endblock %}
+{% block og_url %}https://www.yourcustomurl.com{% endblock %}
+
+{% block twitter_card %}{% endblock %}
+{% block twitter_title %}{{doctor.name }}{% endblock %}
+{% block twitter_description %}{{details.main_description }}{% endblock %}
+{% block twitter_image %}{{ doctor.image.url }}{% endblock %}
+
 
 {% block content %}
 
@@ -36,8 +50,7 @@
                     <h2 class="heading is-medium-title">About </h2>
                     <div class="w-layout-grid team-grid-1">
                         <div id="w-node-_803f4e47-0c01-f217-0e21-fdbb7d426e6c-54441ff2">
-                            <img alt="" loading="lazy"
-                                src="https://assets-global.website-files.com/633daa121f130819bf83b08d/6349b9fb8a12a186c7739164_pexels-polina-zimmerman-4687344.jpg"
+                            <img alt="" loading="lazy" src="{{ doctor.image.url }}"
                                 sizes="(max-width: 479px) 80vw, (max-width: 767px) 86vw, (max-width: 991px) 88vw, 82vw"
                                 srcset="{{ doctor.image_500.url }} 500w, {{ doctor.image_800.url }} 800w, {{ doctor.image.url }} 1018w">
                         </div>
@@ -74,6 +87,7 @@
                             <div role="listitem" class="team-2-item w-dyn-item">
                                 <a href="{% url 'doctor_detail' doctor.slug %}" class="team-2-content w-inline-block">
                                     <p class="team-2-name">{{ doctor.name }}</p>
+                                    <p class="team-2-name">{{ doctor.designation }}</p>
                                     <p class="team-2-role">{{ doctor.role }}</p>
                                 </a>
                                 <div class="team-2-image">

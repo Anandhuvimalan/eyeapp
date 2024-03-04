@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% block common_description %}{{details.expertise }}{% endblock %}
+{% block common_keywords %}{{details.experience }}{% endblock %}
+
+{% block page_title %}{{team_member.name }}{% endblock %}
+{% block og_title %}{{team_member.name }}{% endblock %}
+{% block og_description %}{{details.expertise }}{% endblock %}
+{% block og_image %}{{ team_member.image.url }}{% endblock %}
+{% block og_url %}https://www.yourcustomurl.com{% endblock %}
+
+{% block twitter_card %}{% endblock %}
+{% block twitter_title %}{{team_member.name }}{% endblock %}
+{% block twitter_description %}{{details.expertise }}{% endblock %}
+{% block twitter_image %}{{ team_member.image.url }}{% endblock %}
+
 
 {% block content %}
 
@@ -36,10 +50,9 @@
                     <h2 class="heading is-medium-title">About </h2>
                     <div class="w-layout-grid team-grid-1">
                         <div id="w-node-_803f4e47-0c01-f217-0e21-fdbb7d426e6c-54441ff2">
-                            <img alt="" loading="lazy"
-                                src="https://assets-global.website-files.com/633daa121f130819bf83b08d/6349b9fb8a12a186c7739164_pexels-polina-zimmerman-4687344.jpg"
+                            <img alt="" loading="lazy" src="team_member.image.url"
                                 sizes="(max-width: 479px) 80vw, (max-width: 767px) 86vw, (max-width: 991px) 88vw, 82vw"
-                                srcset="{{ doctor.image_500.url }} 500w, {{ doctor.image_800.url }} 800w, {{ doctor.image.url }} 1018w">
+                                srcset="{{ team_member.image_500.url }} 500w, {{ team_member.image_800.url }} 800w, {{ team_member.image.url }} 1018w">
                         </div>
 
                         <div id="w-node-_05947dd1-2a01-5ce3-1ee7-6beae3d25fe3-54441ff2" class="team-content-block">
