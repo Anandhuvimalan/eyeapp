@@ -6,14 +6,29 @@
     <!-- SEO Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="d62PM1ZSP5XV-V5UuwLrPY38Htu8jx5EBldf239QITM" />
-    <meta name="description"
-        content="Varakala's Premier Eye Care Center - Dr. Rameshkumar Kurup & Sarada Memorial Hospital, providing top-notch eye care services including cataract surgery, eye tests, and more.">
-    <meta name="keywords"
-        content="eye hospital Varakala, Dr. Rameshkumar hospital, Sarada hospital, Sarada Memorial hospital, cataract surgery Varakala, Varakala eye hospitals, Dr. Rameshkumar Kurup and Sarada Memorial hospital, ramsarvarkala, ramesh eye hopital eye care, eye hospital, eye wear, Ophthalmologists,Opthamology,Eye Operation Hospital,Eye Disease, Vision Loss,Eye condition Treatment ,  Eye Surgeon Doctors, Private Eye Hospitals, Cataract Operation Doctors, eye test, eye care services, top eye hospitals in Varakala, best eye care in Varakala, eye health, vision care, eye check-up, eye treatment">
-    <meta name="author" content="K AnilKumar">
 
-    <title>Dr. Rameshkumar Kurup & Sarada Memorial Hospital - Premier Eye Care in Varakala</title>
+    <!-- meta tags -->
+    <!-- <meta name="google-site-verification" content="{% block google_site_verification %}{% endblock %}" /> -->
+    <meta name="description" content="{% block common_description %}{% endblock %}">
+    <meta name="keywords" content="{% block common_keywords %}{% endblock %}">
+    <meta name="author" content="{% block common_author %}{% endblock %}">
+
+    <!-- Title -->
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <!-- Open Graph Meta Tags (for social sharing) -->
+    <meta property="og:title"
+        content="{% block og_title %}Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% endblock %}">
+
+    <!-- Twitter Meta Tags (for Twitter Card) -->
+    <meta name="twitter:card" content="{% block twitter_card %}{% endblock %}">
+    <meta name="twitter:title"
+        content="{% block twitter_title %}Dr. Ramesh Kumar Kurup & Sarada Memorial Hospital{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% endblock %}">
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/fav/favicon-16x16.png' %}" sizes="16x16" type="image/png">
@@ -26,22 +41,6 @@
     <!-- Android Chrome Icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/fav/android-chrome-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'images/fav/android-chrome-512x512.png' %}">
-
-
-    <!-- Open Graph Meta Tags (for social sharing) -->
-    <meta property="og:title" content="Dr. Rameshkumar Kurup & Sarada Memorial Hospital - Premier Eye Care in Varakala">
-    <meta property="og:description"
-        content="Varakala's Premier Eye Care Center offering comprehensive eye care services.">
-    <meta property="og:image" content="{% static 'images/Dr.rameshkumarkurup&saradamemorialeyehospital.JPG' %}">
-    <meta property="og:url" content="https://www.drrameshkumarkurupandsaradaeyehospital.org/">
-
-    <!-- Twitter Meta Tags (for Twitter Card) -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title"
-        content="Dr. Rameshkumar Kurup & Sarada Memorial Hospital - Premier Eye Care in Varakala">
-    <meta name="twitter:description"
-        content="Varakala's Premier Eye Care Center offering comprehensive eye care services.">
-    <meta name="twitter:image" content="{% static 'images/Dr.rameshkumarkurup&saradamemorialeyehospital.JPG' %}">
 
     <!-- Other head elements -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />

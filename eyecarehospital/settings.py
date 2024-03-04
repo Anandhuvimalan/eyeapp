@@ -30,11 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 
-
-ALLOWED_HOSTS = [
-    'drrameshkumarkurupandsaradaeyehospital.org',
-    'www.drrameshkumarkurupandsaradaeyehospital.org',
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

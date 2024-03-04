@@ -141,6 +141,7 @@ class Service(models.Model):
 class Doctor(models.Model):
     name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
+    designation = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, blank=True)
     image = models.ImageField(upload_to='doctor_images/')
     image_500 = models.ImageField(upload_to='doctor_images_500/', blank=True)

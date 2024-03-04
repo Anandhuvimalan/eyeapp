@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
+{% block common_description %}Custom description for this page{% endblock %}
+{% block common_keywords %}Custom keywords for this page{% endblock %}
+{% block common_author %}Custom Author{% endblock %}
+
+{% block page_title %}Custom Page Title{% endblock %}
+{% block og_title %}Custom Page Title for Open Graph{% endblock %}
+{% block og_description %}Custom Page Description{% endblock %}
+{% block og_image %}{% static 'images/custom_image.jpg' %}{% endblock %}
+{% block og_url %}https://www.yourcustomurl.com{% endblock %}
+
+{% block twitter_card %}summary_large_image{% endblock %}
+{% block twitter_title %}Custom Twitter Title{% endblock %}
+{% block twitter_description %}Custom Twitter Description{% endblock %}
+{% block twitter_image %}{% static 'images/custom_twitter_image.jpg' %}{% endblock %}
+
 {% block content %}
 <main class="main">
     <header class="header-2">
@@ -45,8 +60,9 @@
                                 <p class="header-2-text-1">Founded in Loving Memory of Dr. Ramesh Kumar Kurup and His
                                     Daughter Sarada
 
-                                    On October 27, 2006, Dr. Suhichithra, along with her sisters, Dr. Chithra Lekha and
-                                    Anitha, established our eye care hospital. In honor of the legacy left by Dr. Ramesh
+                                    On October 27, 2006, Dr. Suchithra.K, along with her sisters, Dr. Chithralekha and
+                                    Anitha. S, established our eye care hospital. In honor of the legacy left by Dr.
+                                    Ramesh
                                     Kumar Kurup, our hospital is dedicated to serving the underprivileged with
                                     unwavering commitment and providing high-quality eye care services to the community
                                     in and around Varkala. Our mission is rooted in compassion, excellence, and a vision
@@ -204,6 +220,7 @@
                             <div role="listitem" class="team-2-item w-dyn-item">
                                 <a href="{% url 'doctor_detail' doctor.slug %}" class="team-2-content w-inline-block">
                                     <p class="team-2-name">{{ doctor.name }}</p>
+                                    <p class="team-2-name">{{ doctor.designation }}</p>
                                     <p class="team-2-role">{{ doctor.role }}</p>
                                 </a>
                                 <div class="team-2-image">
