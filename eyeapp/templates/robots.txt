@@ -1,21 +1,4 @@
 User-agent: *
-Disallow: /admin/  # Adjust as needed
+Disallow: /admin/
 
 Sitemap: https://www.drrameshkumarkurupandsaradaeyehospital.org/sitemap.xml
-
-Allow: /services/
-Allow: /about/
-Allow: /doctor/
-Allow: /blogs/
-Allow: /contact/
-Allow: /reviews/
-Allow: /doctor/dr-meena-chakrabarti/
-Allow: /doctor/dr-arup-chakrabarti/
-Allow: /services/cataract-surgery/
-Allow: /categories/
-Allow: /categories/clinical-eye-care/
-Allow: /categories/eye-surgeries/
-Allow: /categories/vision-care-prevention/
-Allow: /management-team/
-Allow: /management-team/k-anilkumar/
-Allow: /gallery/
