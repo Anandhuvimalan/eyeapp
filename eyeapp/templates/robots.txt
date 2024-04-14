@@ -1,6 +1,5 @@
 User-agent: *
 Disallow: /admin/  # Adjust as needed
-Disallow: /private/  # Adjust as needed
 
 Sitemap: https://www.drrameshkumarkurupandsaradaeyehospital.org/sitemap.xml
 
