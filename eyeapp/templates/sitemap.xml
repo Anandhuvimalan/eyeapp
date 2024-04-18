@@ -36,11 +36,171 @@
     </url>
     <!-- Individual Service Pages -->
     <url>
-        <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/cataract-surgery/</loc>
-        <lastmod>2024-04-01</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/visual-acuity-test/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/refraction-assessment/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/tonometry/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/visual-field-testing/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/slit-lamp-examination/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/dilated-fundus-examination/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/color-vision-testing/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/pachymetry/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/ocular-allergy-testing/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/dry-eye-diagnostics/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/refractive-errors/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/cataracts/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/glaucoma/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/macular-degeneration/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/diabetic-retinopathy/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/conjunctivitis/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/dry-eye-syndrome/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/strabismus/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/pediatric-ophthalmology/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/low-vision-services/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/cataract-surgery/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/retinal-surgery/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/glaucoma-surgery/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/eyewear-solutions/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/regular-eye-exams/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/eye-health-education/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+<url>
+    <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/services/emergency-eye-care/</loc>
+    <lastmod>2024-04-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+</url>
+
+
+
+
     <!-- About Page -->
     <url>
         <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/about</loc>
@@ -69,7 +229,7 @@
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
-    <!-- Additional URLs -->
+
     <!-- Categories Section -->
     <url>
         <loc>https://www.drrameshkumarkurupandsaradaeyehospital.org/categories/</loc>
