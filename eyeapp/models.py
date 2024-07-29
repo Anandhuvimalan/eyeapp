@@ -6,61 +6,18 @@ from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to='category_images/')
-    image_500 = models.ImageField(upload_to='category_images_500/', blank=True)
-    image_800 = models.ImageField(upload_to='category_images_800/', blank=True)
-    image_1080 = models.ImageField(
-        upload_to='category_images_1080/', blank=True)
-    image_1920 = models.ImageField(
-        upload_to='category_images_1920/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Category, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1080': self.image_1080,
-            '1920': self.image_1920
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    # Updated line
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=90)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Category, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class CategoryDetails(models.Model):
+    id = models.IntegerField(primary_key=True)
     category = models.OneToOneField(
         Category, related_name='details', on_delete=models.CASCADE)
     category_content = models.TextField()
@@ -70,10 +27,11 @@ class CategoryDetails(models.Model):
 
 
 class Icon(models.Model):
+    id = models.IntegerField(primary_key=True)
     category = models.ForeignKey(
         Category, related_name='icons', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(unique=True)
     image = models.FileField(upload_to='category_icons/')
 
     def __str__(self):
@@ -81,115 +39,35 @@ class Icon(models.Model):
 
 
 class Service(models.Model):
+    id = models.IntegerField(primary_key=True)
     icon = models.ForeignKey(
         Icon, related_name='services', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to='service_images/')
-    image_500 = models.ImageField(upload_to='service_images_500/', blank=True)
-    image_800 = models.ImageField(upload_to='service_images_800/', blank=True)
-    image_1080 = models.ImageField(
-        upload_to='service_images_1080/', blank=True)
-    image_1920 = models.ImageField(
-        upload_to='service_images_1920/', blank=True)
     featured = models.BooleanField(default=False)
     service_nav = models.BooleanField(default=False)
 
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Service, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1080': self.image_1080,
-            '1920': self.image_1920
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=100)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Service, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class Doctor(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     designation = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='doctor_images/')
-    image_500 = models.ImageField(upload_to='doctor_images_500/', blank=True)
-    image_800 = models.ImageField(upload_to='doctor_images_800/', blank=True)
-    image_1018 = models.ImageField(upload_to='doctor_images_1018/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Doctor, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1018': self.image_1018
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=100)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Doctor, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class DoctorDetails(models.Model):
+    id = models.IntegerField(primary_key=True)
     doctor = models.OneToOneField(
         Doctor, related_name='details', on_delete=models.CASCADE)
     main_description = models.TextField(blank=True)
@@ -203,6 +81,7 @@ class DoctorDetails(models.Model):
 
 
 class ServiceDetails(models.Model):
+    id = models.IntegerField(primary_key=True)
     service = models.OneToOneField(
         Service, related_name='details', on_delete=models.CASCADE)
     service_content = models.TextField()
@@ -212,159 +91,27 @@ class ServiceDetails(models.Model):
 
 
 class Gallery(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='gallery_images/')
-    image_500 = models.ImageField(upload_to='gallery_images_500/', blank=True)
-    image_800 = models.ImageField(upload_to='gallery_images_800/', blank=True)
-    image_1080 = models.ImageField(
-        upload_to='gallery_images_1080/', blank=True)
-    image_1920 = models.ImageField(
-        upload_to='gallery_images_1920/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Gallery, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1080': self.image_1080,
-            '1920': self.image_1920
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    # Updated line
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=90)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Gallery, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class Mizhi(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='mizhi_images/')
-    image_500 = models.ImageField(upload_to='mizhi_images_500/', blank=True)
-    image_800 = models.ImageField(upload_to='mizhi_images_800/', blank=True)
-    image_1080 = models.ImageField(upload_to='mizhi_images_1080/', blank=True)
-    image_1920 = models.ImageField(upload_to='mizhi_images_1920/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Mizhi, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1080': self.image_1080,
-            '1920': self.image_1920
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    # Updated line
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=90)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Mizhi, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class Equipment(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='equipment_images/')
-    image_500 = models.ImageField(
-        upload_to='equipment_images_500/', blank=True)
-    image_800 = models.ImageField(
-        upload_to='equipment_images_800/', blank=True)
-    image_1080 = models.ImageField(
-        upload_to='equipment_images_1080/', blank=True)
-    image_1920 = models.ImageField(
-        upload_to='equipment_images_1920/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(Equipment, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1080': self.image_1080,
-            '1920': self.image_1920
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    # Updated line
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=90)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(Equipment, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
@@ -373,6 +120,7 @@ class Equipment(models.Model):
 
 
 class BlogCategory(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -380,8 +128,9 @@ class BlogCategory(models.Model):
 
 
 class Blog(models.Model):
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to='blog_images/')
     category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE)
@@ -395,6 +144,7 @@ class Blog(models.Model):
 
 
 class Review(models.Model):
+    id = models.IntegerField(primary_key=True)
     patient_name = models.CharField(max_length=255)
     content = models.TextField()
     what_doctor = models.CharField(max_length=255)
@@ -406,59 +156,18 @@ class Review(models.Model):
 
 
 class ManagementTeam(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='management_team_images/')
-    image_500 = models.ImageField(
-        upload_to='management_team_images_500/', blank=True)
-    image_800 = models.ImageField(
-        upload_to='management_team_images_800/', blank=True)
-    image_1018 = models.ImageField(
-        upload_to='management_team_images_1018/', blank=True)
-
-    def save(self, *args, **kwargs):
-        # Save the original image first
-        if not self.id:  # Only process if it's a new object
-            super(ManagementTeam, self).save(*args, **kwargs)
-
-        # Create different image resolutions
-        resolutions = {
-            '500': self.image_500,
-            '800': self.image_800,
-            '1018': self.image_1018
-        }
-
-        try:
-            with Image.open(self.image) as img:
-                for res, image_field in resolutions.items():
-                    output_size = self._calculate_new_dimensions(img, int(res))
-                    img.thumbnail(output_size, Image.Resampling.LANCZOS)
-                    temp_thumb = BytesIO()
-                    img.save(temp_thumb, img.format, quality=100)
-                    temp_thumb.seek(0)
-                    image_field.save(
-                        f'{self.name}_{res}.{img.format.lower()}',
-                        ContentFile(temp_thumb.read()),
-                        save=False
-                    )
-                    temp_thumb.close()
-        except IOError:
-            raise ValidationError("Error processing image")
-
-        # Save the object again with all the images
-        super(ManagementTeam, self).save(*args, **kwargs)
-
-    def _calculate_new_dimensions(self, image, base_width):
-        w_percent = (base_width / float(image.size[0]))
-        h_size = int((float(image.size[1]) * float(w_percent)))
-        return (base_width, h_size)
 
     def __str__(self):
         return self.name
 
 
 class ManagementTeamDetails(models.Model):
+    id = models.IntegerField(primary_key=True)
     team_member = models.OneToOneField(
         ManagementTeam, related_name='details', on_delete=models.CASCADE)
     main_description = models.TextField(blank=True)

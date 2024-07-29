@@ -1,0 +1,78 @@
+/* Default styles: Applied to extra small devices (mobile phones) */
+.nav-block-1 img {
+    width: 110px;
+    /* Full width on small screens */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin: 0 4px;
+}
+
+/* Media query for small devices (tablets in portrait mode) */
+@media (min-width: 576px) {
+    .nav-block-1 img {
+        width: 150px;
+        /* Adjust as needed */
+        height: auto;
+    }
+}
+
+/* Media query for medium devices (tablets in landscape mode) */
+@media (min-width: 768px) {
+    .nav-block-1 img {
+        width: 180px;
+        /* Adjust as needed */
+        height: auto;
+    }
+}
+
+/* Media query for large devices (small laptops) */
+@media (min-width: 992px) {
+    .nav-block-1 img {
+        width: 150px;
+        /* Adjust as needed */
+        height: auto;
+        margin-left: 13px;
+
+    }
+}
+
+/* Media query for extra-large devices (large laptops and desktops) */
+@media (min-width: 1200px) {
+    .nav-block-1 img {
+        width: 180px;
+        /* Adjust as needed */
+        height: auto;
+        margin-left: 13px;
+    }
+}
+
+/* Pagination Styles */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-link {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #007BFF;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-link:hover {
+    background-color: #0056b3;
+}
+
+.current-page {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+}
