@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: https://www.drrameshkumarkurupandsaradaeyehospital.org/sitemap.xml
+Sitemap: https://www.drrameshkumarkurupandsaradaeyehospital.com/sitemap.xml
