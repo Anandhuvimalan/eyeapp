@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'eyeapp.middleware.MediaWhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,6 +88,9 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD', default=''),
         'HOST': config('DB_HOST', default=''),
         'PORT': config('DB_PORT', default=''),
+        # Reuse the database connection across requests instead of reconnecting every time
+        'CONN_MAX_AGE': 60,
+        'CONN_HEALTH_CHECKS': True,
     }
 }
 
@@ -136,6 +139,20 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Files only change on deploy, so don't rescan the disk on every request
+WHITENOISE_AUTOREFRESH = False
+WHITENOISE_USE_FINDERS = False
+
+
+def whitenoise_cache_headers(headers, path, url):
+    # s-maxage lets the Vercel CDN cache static/media files at the edge; the
+    # edge cache is cleared on every new deployment.
+    headers['Cache-Control'] = 'public, max-age=86400, s-maxage=31536000'
+
+
+WHITENOISE_ADD_HEADERS_FUNCTION = whitenoise_cache_headers
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

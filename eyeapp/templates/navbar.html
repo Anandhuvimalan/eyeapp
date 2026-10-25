@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="menu-sublinks-1">
                                         <div class="menu-sublinks-1-flex-1">
-                                            <p class="menu-text-1">We offer more than <strong>{{ services_all|length }}
+                                            <p class="menu-text-1">We offer more than <strong>{{ services_all.count }}
                                                     treatments</strong>
                                                 and
                                                 procedures. </p>
@@ -215,7 +215,7 @@
                                             <img src="https://assets.website-files.com/633daa121f1308def083b05d/633daa121f1308e1c283b0a1_arrow-icon-white-4.svg"
                                                 loading="lazy" alt="" class="menu-category-icon" />
                                             <div class="menu-category-color"></div>
-                                            <img src="{{ category.image_url }}" loading="lazy" alt="{{ category.name }}"
+                                            <img src="{{ category.image.url }}" loading="lazy" alt="{{ category.name }}"
                                                 sizes="100vw" srcset="{{ category.image.url }}" class="menu-category-image" />
                                         </a>
                                     </div>

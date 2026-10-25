@@ -11,6 +11,7 @@ def home_view(request):
     mizhi = Mizhi.objects.all()
     equipment = Equipment.objects.all()
     context = {
+        'categories_all': Category.objects.prefetch_related('icons'),
         'gallery': gallery,
         'mizhi': mizhi,
         'equipment': equipment,
@@ -23,14 +24,14 @@ def gallery_view(request):
 
 
 def categories(request):
-    categories = Category.objects.all()
-    return render(request, 'category.html')
+    categories = Category.objects.prefetch_related('icons')
+    return render(request, 'category.html', {'categories_all': categories})
 
 
 def category_detail(request, slug):
     category = Category.objects.get(slug=slug)
     details = CategoryDetails.objects.get(category=category)
-    other_categories = Category.objects.exclude(slug=slug)
+    other_categories = Category.objects.exclude(slug=slug).prefetch_related('icons')
     context = {
         'category_details': details,
         'category': category,
@@ -41,7 +42,7 @@ def category_detail(request, slug):
 
 
 def services(request):
-    all_services = Service.objects.all().order_by('id')
+    all_services = Service.objects.select_related('icon').order_by('id')
     items_per_page = 8
 
     paginator = Paginator(all_services, items_per_page)
@@ -66,7 +67,7 @@ def services(request):
 def service_detail(request, slug):
     service = Service.objects.get(slug=slug)
     details = ServiceDetails.objects.get(service=service)
-    other_services = Service.objects.exclude(slug=slug)
+    other_services = Service.objects.exclude(slug=slug).select_related('icon')
     paginator = Paginator(other_services, 8)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -104,7 +105,7 @@ def doctor_detail(request, slug):
 
 def subpage1(request):
     services_with_diagnostic_testing = Service.objects.filter(
-        icon__name="Diagnostic Testing")
+        icon__name="Diagnostic Testing").select_related('icon')
     context = {
         'services_with_diagnostic_testing': services_with_diagnostic_testing,
     }
@@ -113,7 +114,7 @@ def subpage1(request):
 
 def subpage2(request):
     services_with_eye_condition_treatments = Service.objects.filter(
-        icon__name="Eye Condition treatments")
+        icon__name="Eye Condition treatments").select_related('icon')
     context = {
         'services_with_eye_condition_treatments': services_with_eye_condition_treatments,
     }
@@ -122,9 +123,9 @@ def subpage2(request):
 
 def blog_view(request):
     all_blogs = Blog.objects.all()
-    featured_blogs = Blog.objects.filter(featured=True)
-    eye_health_blogs = Blog.objects.filter(category__name='Eye Health')
-    technology_blogs = Blog.objects.filter(category__name='Technology')
+    featured_blogs = Blog.objects.filter(featured=True).select_related('category')
+    eye_health_blogs = Blog.objects.filter(category__name='Eye Health').select_related('category')
+    technology_blogs = Blog.objects.filter(category__name='Technology').select_related('category')
     context = {
         'all_blogs': all_blogs,
         'featured_blogs': featured_blogs,
@@ -137,7 +138,7 @@ def blog_view(request):
 
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
-    other_blogs = Blog.objects.exclude(slug=slug)
+    other_blogs = Blog.objects.exclude(slug=slug).select_related('category')
     return render(request, 'blog_detail.html', {'blog': blog, 'other_blogs': other_blogs})
 
 
