@@ -236,12 +236,13 @@ for a healthier, brighter future for all.{% endblock %}
                     <div class="the-team-2 w-dyn-list">
                         <div role="list" class="team-2-list w-dyn-items">
                             {% for doctor in doctors_all %}
-                            <div role="listitem" class="team-2-item w-dyn-item">
+                            <div role="listitem" class="team-2-item w-dyn-item{% if not doctor.show_image %} is-no-image{% endif %}">
                                 <a href="{% url 'doctor_detail' doctor.slug %}" class="team-2-content w-inline-block">
                                     <p class="team-2-name">{{ doctor.name }}</p>
                                     <p class="team-2-name">{{ doctor.designation }}</p>
                                     <p class="team-2-role">{{ doctor.role }}</p>
                                 </a>
+                                {% if doctor.show_image %}
                                 <div class="team-2-image">
                                     <div class="_3d-block">
                                         <div class="image-animation-trigger _3d-for-image"
@@ -256,6 +257,7 @@ for a healthier, brighter future for all.{% endblock %}
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         </div>

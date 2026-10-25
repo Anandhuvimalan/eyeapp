@@ -62,6 +62,13 @@ class Doctor(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to='doctor_images/')
 
+    # Doctors whose photos should not be shown on the site (client request)
+    HIDDEN_IMAGE_SLUGS = {'dr-arup-chakrabarti', 'dr-meena-chakrabarti'}
+
+    @property
+    def show_image(self):
+        return bool(self.image) and self.slug not in self.HIDDEN_IMAGE_SLUGS
+
     def __str__(self):
         return self.name
 

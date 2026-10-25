@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{% load doctor_tags %}
 {% block common_description %}{{details.main_description }}{% endblock %}
 {% block common_keywords %}{{details.experience }}{% endblock %}
 
 {% block page_title %}{{doctor.name }}{% endblock %}
 {% block og_title %}{{doctor.name }}{% endblock %}
 {% block og_description %}{{details.main_description }}{% endblock %}
-{% block og_image %}{{ doctor.image.url }}{% endblock %}
+{% block og_image %}{% if doctor.show_image %}{{ doctor.image.url }}{% endif %}{% endblock %}
 {% block twitter_card %}{% endblock %}
 {% block twitter_title %}{{doctor.name }}{% endblock %}
 {% block twitter_description %}{{details.main_description }}{% endblock %}
-{% block twitter_image %}{{ doctor.image.url }}{% endblock %}
+{% block twitter_image %}{% if doctor.show_image %}{{ doctor.image.url }}{% endif %}{% endblock %}
 {% block og_url %}https://www.drrameshkumarkurupandsaradaeyehospital.com/doctor/{{doctor.name }}/{% endblock %}
 {% block canonical_url %}https://www.drrameshkumarkurupandsaradaeyehospital.com/doctor/{{doctor.name }}/{% endblock %}
 
@@ -48,16 +49,22 @@
             <div class="container">
                 <div class="vertical-flex-gap-4em">
                     <h2 class="heading is-medium-title">About </h2>
-                    <div class="w-layout-grid team-grid-1">
+                    <div class="w-layout-grid team-grid-1{% if not doctor.show_image %} is-no-image{% endif %}">
+                        {% if doctor.show_image %}
                         <div id="w-node-_803f4e47-0c01-f217-0e21-fdbb7d426e6c-54441ff2">
                             <img alt="" loading="lazy" src="{{ doctor.image.url }}"
                                 sizes="(max-width: 479px) 80vw, (max-width: 767px) 86vw, (max-width: 991px) 88vw, 82vw"
                                 >
                         </div>
+                        {% endif %}
 
                         <div id="w-node-_05947dd1-2a01-5ce3-1ee7-6beae3d25fe3-54441ff2" class="team-content-block">
                             <div class="rich-text w-richtext">
+                                {% if doctor.show_image %}
                                 {{details.about_description|safe }}
+                                {% else %}
+                                {{details.about_description|strip_images|safe }}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -84,12 +91,13 @@
                     <div class="the-team-2 w-dyn-list">
                         <div role="list" class="team-2-list w-dyn-items">
                             {% for doctor in other_doctors %}
-                            <div role="listitem" class="team-2-item w-dyn-item">
+                            <div role="listitem" class="team-2-item w-dyn-item{% if not doctor.show_image %} is-no-image{% endif %}">
                                 <a href="{% url 'doctor_detail' doctor.slug %}" class="team-2-content w-inline-block">
                                     <p class="team-2-name">{{ doctor.name }}</p>
                                     <p class="team-2-name">{{ doctor.designation }}</p>
                                     <p class="team-2-role">{{ doctor.role }}</p>
                                 </a>
+                                {% if doctor.show_image %}
                                 <div class="team-2-image">
                                     <div class="_3d-block">
                                         <div class="image-animation-trigger _3d-for-image"
@@ -104,6 +112,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         </div>

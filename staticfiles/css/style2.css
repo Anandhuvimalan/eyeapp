@@ -76,3 +76,15 @@
     color: #fff;
     border-radius: 5px;
 }
+/* Doctor cards without a photo: show only the name block */
+.team-2-item.is-no-image {
+    min-height: 0;
+}
+
+.team-2-item.is-no-image .team-2-content {
+    width: 100%;
+}
+
+.team-grid-1.is-no-image {
+    grid-template-columns: 1fr;
+}
