@@ -139,6 +139,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'eyeapp.storage.VersionedMediaStorage'
+# Bump after replacing media files in place, so browsers drop their cached copies
+MEDIA_VERSION = 2
 
 # Files only change on deploy, so don't rescan the disk on every request
 WHITENOISE_AUTOREFRESH = False
